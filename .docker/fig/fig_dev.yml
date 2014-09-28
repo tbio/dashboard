@@ -1,0 +1,35 @@
+dbdashboard:
+  image: paintedfox/postgresql
+  environment:
+    USER: dashboard_admin
+    DB: dashboard
+    PASS: dashboardpassword
+  ports:
+    - "5432:5432"
+  volumes:
+    - .:/webapp/dashboard/
+    - /tmp/postgresql:/data
+dashboard:
+  image: tbio/dashboard
+  working_dir: /webapp/dashboard
+  command: /webapp/dashboard/rundev.sh
+  volumes:
+    - .:/webapp/dashboard/
+  environment:
+    OUTERIP: REPLACE_OUTERIP
+  ports:
+    - "8000:8000"
+    - "9000:9000"
+    - "9009:9009"
+  links:
+    - dbdashboard:db
+nginxdashboard: 
+  image: shepmaster/nginx-template-image
+  ports:
+    - "8001:80"
+  volumes:
+    - .:/external_volumen
+    - ./content:/external_volumen_content/static/
+    - ./.docker/nginx_dev/sites-enabled:/etc/nginx/sites-templates
+  links:
+    - dashboard:dashboard

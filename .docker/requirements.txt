@@ -1,0 +1,9 @@
+Django==1.7
+psycopg2
+Jinja2
+Pillow
+fig
+gunicorn
+ipdb
+ipython
+mock
