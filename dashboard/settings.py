@@ -28,7 +28,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,6 +35,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'measurements',
+    'contact',
+    'patients',
+    'specialist',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,11 +60,23 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+DB_HOST = os.environ.get('DB_PORT_5432_TCP_ADDR', 'localhost')
+DB_PORT = os.environ.get('DB_PORT_5432_TCP_PORT', '')
+DB_USERNAME = os.environ.get('DB_ENV_USER', 'monoku')
+DB_PASSWORD = os.environ.get('DB_ENV_PASS', 'monokupassword')
+DB_NAME = os.environ.get('DB_ENV_DB', 'clarity')
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'localhost')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DB_NAME,
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
+        'ATOMIC_REQUESTS': True,
+    },
 }
 
 # Internationalization
@@ -81,3 +97,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'accounts.User'
