@@ -1,0 +1,138 @@
+{% extends 'base_dashboard.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div id="contentHeader">
+  <h1 style="margin-left: 100px;">  {{ name }} </h1>
+       <img  id="img-perfil" class="round-img" height="70" width="70"  src="images/gallery/rain_small.jpg" alt="" />
+
+					      <div id="quickNav">
+								<ul>
+								<li class="quickNavMail">
+									<a href="#menuAmpersand" class="menu"><span class="icon-book"></span></a>		
+									
+									<span class="alert">1</span>		
+
+									<div id="menuAmpersand" class="menu-container quickNavConfirm">
+										<div class="menu-content cf">							
+											
+											<div class="qnc qnc_confirm">
+												
+												<h3>Solicitudes</h3>
+										
+												<div class="qnc_item">
+	 											<div class="qnc_content">
+														<span class="qnc_title">Confirm #1</span>
+														<span class="qnc_preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</span>
+														<span class="qnc_time">3 hours ago</span>
+													</div> <!-- .qnc_content -->
+												
+											  	<div class="qnc_actions">						
+														<button class="btn btn-primary btn-small">Accept</button>
+														<button class="btn btn-quaternary btn-small">Not Now</button>
+													</div>
+												</div>												
+												
+										</div>
+									</div>
+								</li>
+
+							</ul>		
+						</div> <!-- .quickNav -->
+
+       	<div id="topNav">
+		  <ul>
+		 	<li>
+		 	 <!--	<a href="#menuProfile" class="menu">John Doe</a>	-->
+		 		<div id="menuProfile" class="menu-container menu-dropdown">
+					<div class="menu-content">
+						<ul class="">
+							<li><a href="javascript:;">Edit Profile</a></li>
+							<li><a href="javascript:;">Edit Settings</a></li>
+							<li><a href="javascript:;">Suspend Account</a></li>
+						</ul>
+					</div>
+				</div>
+	 		</li>
+		 	<!-- <li><a href="javascript:;">Upgrade</a></li> -->
+		  <!--	<li><a href="index.html">Logout</a></li> -->
+		 </ul>
+	</div> <!-- #topNav -->
+
+		</div> <!-- #contentHeader -->	
+		
+		<div class="container">
+			
+			
+			<div class="grid-17">
+				
+				<div class="widget widget-plain">
+					
+					<div class="widget-content">
+				
+						<h2 class="dashboard_title">
+							Informacion rapida
+							<!-- <span>For the week of Jun 15 - Jun 22, 2011</span> -->
+						</h2>				
+						
+						<div class="dashboard_report first activeState">
+							<div class="pad">
+								<span class="value"> {{ information.healt_points }} </span> Puntos de salud
+              </div> <!-- .pad -->
+						</div>
+						
+						<div class="dashboard_report defaultState">
+							<div class="pad">
+                <span class="value"> {{ information.ideal_heart_rate }} </span> Ideal Heart Rate
+							</div> <!-- .pad -->
+						</div>
+
+            <div class="dashboard_report defaultState">
+							<div class="pad">
+                <span class="value"> {{ information.current_bpm }} </span> Actual Heart Rate
+							</div> <!-- .pad -->
+						</div>
+
+            <div class="dashboard_report defaultState last">
+							<div class="pad">
+								<span class="value">  {{ information.current_average_effort }} % </span> Esfuerzo Actual
+							</div> <!-- .pad -->
+						</div>
+																
+					</div> <!-- .widget-content -->
+					
+				</div> <!-- .widget -->
+         			
+				<div class="widget widget-tabs">
+          					
+					<div class="widget-header">
+						<span class="icon-chart"></span>
+						<h3 class="">Tus Consejos</h3>	
+          
+            <!-- Only to 3 tips.. knife style -->
+						<ul class="tabs right">	
+							<li class="active"><a href="#tip1">Uno</a></li>	
+							<li class=""><a href="#tip2">Dos</a></li>					
+							<li class=""><a href="#tip3">Tres</a></li>
+						</ul>
+          
+					</div>
+          
+          {% for tip in tips %}
+          
+            <div id="tip{{ forloop.counter }}"  class="widget-content">
+          
+                <h3>{{ tip.name }} </h3>
+          
+                {{tip.tip}} 
+          
+            </div> 
+          
+          {% endfor %}
+          
+				</div> <!-- .widget -->
+          				
+			</div> <!-- .grid -->			
+          		
+{% endblock %}
+

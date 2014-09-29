@@ -1,0 +1,156 @@
+{% extends 'base_dashboard.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="page-title">
+   <i class=""></i>
+   <h3>
+      Tu Estado - <span class="semi-bold">Mayor Velocidad</span>
+   </h3>
+</div>
+<div class="row">
+<div class="col-md-6">
+   <div class="grid simple transparent">
+      <div class="tiles green p-t-15 p-b-15 p-l-25 ">
+         <h4><span class="bold">Que es?</span></h4>
+         <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="javascript:;" class="remove"></a>
+         </div>
+      </div>
+      <div class="grid-body" style="overflow: hidden; display: block;">
+         <p>
+            Tu corazon tambien tiene un limite, si constantemente tu esfuerzo es alto debes prestar atencion
+         </p>
+         <div class="blog-bar">
+            <a href="#"><i class="icon-eye-open"></i></a> <a href="#"><i class="icon-comment"></i></a>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="col-md-6 hidden-xlg">
+   <div class="row tiles-container  m-b-20 hidden-xlg">
+      <div class="m-l-10 ">
+         <div class="tiles green p-t-15 p-b-15 p-l-25 ">
+            <h5 class="text-black semi-bold">Concejo</h5>
+         </div>
+         <div class="tiles white ">
+            <div class="p-t-20 p-b-15 b-b b-grey">
+               <div class="post overlap-left-10">
+                  <div class="user-profile-pic-wrapper">
+                     <div class="user-profile-pic-wrapper">
+                        <div class="user-profile-pic-2x tiles grey white-border">
+                           <div class="text-grey inherit-size p-t-10 p-l-10"> <i class="fa fa-heart-o fa-lg"></i> </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="info-wrapper small-width inline">
+                     <div class="info text-black ">
+                        <p>{{tip.tip}} </p>
+                        <p class="muted small-text"> Por xxx , {{tip.name}}  </p> <br><br><br>
+                     </div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <div class="inline pull-right">
+                     <div class="tiles white p-t-5 p-l-5 p-b-5 p-r-5 inline"> </div>
+                  </div>
+                  <div class="clearfix"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="row">
+<div class="col-md-6">
+   <div class="grid simple transparent">
+      <div class="tiles green p-t-15 p-b-15 p-l-25 ">
+         <h4><span class="bold">Detalles</span></h4>
+         <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="javascript:;" class="remove"></a>
+         </div>
+      </div>
+      <div class="grid-body" style="overflow: hidden; display: block;">
+         <p>
+         En esta simple grafica puedes observar que tan seguido en encuentras al limite de esfuerzo 
+         </p>
+         <div id="graph" ></div>
+      </div>
+   </div>
+</div>
+<div class="col-md-6">
+<div class="grid simple transparent">
+   <div >
+      <h4><span class="bold"></span></h4>
+      <div class="tools">
+         <a href="javascript:;" class="collapse"></a>
+         <a href="javascript:;" class="remove"></a>
+      </div>
+   </div>
+   <div class="grid-body" style="overflow: hidden; display: block;">
+      <div class="col-md-12 col-sm-6">
+         <div class="live-tile slide ha m-b-20 carousel" data-speed="1750" data-delay="8000" data-mode="carousel">
+            <div class="slide-front ha tiles green added-margin  slide active" style="-webkit-transition: 750ms ease; transition: 750ms ease; -webkit-transform: translate(0%, 0%) translateZ(0px);">
+               <div class="p-t-15 p-l-15 p-r-15 p-b-15">
+                  <h4 class="text-black no-margin semi-bold">Informacion Rapida</h4>
+                  <h2 class="text-white no-margin p-t-15 bold">  <span data-animation-duration="900" data-value="60%" class="animate-number">0</span>  </h2>
+                  <p class="text-white  p-b-5"></p>
+                  <div class="progress transparent progress-small">
+                     <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="70.0%" style="width: 26.8%;"></div>
+                  </div>
+                  
+                  <div class="overlayer bottom-right">
+                     <div class="p-r-15 p-b-15"> <i class="fa fa-globe fa fa-5x"></i> </div>
+                  </div>
+               </div>
+            </div>
+            <div class="slide-back ha tiles green added-margin slide" style="-webkit-transform: translate(0%, -100%) translateZ(0px); -webkit-transition: 750ms ease; transition: 750ms ease;">
+               <div class="p-t-15 p-l-15 p-r-15 p-b-15">
+                  <h4 class="text-black no-margin semi-bold">¿Que es?</h4>
+               </div>
+               <div class="overlayer bottom-left fullwidth">
+                  <div class="overlayer-wrapper">
+                     <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                        <p class="bold">  </p>
+                        <p>  </p>
+                        <p class="bold p-t-15"> La barra completamente llena indica que habitualmente no hay un esfuerzo seguido </p>
+                        <p>  </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="clearfix"></div>
+      </div>
+   </div>
+</div>
+
+
+</div>
+    
+    <!-- <div class="col-md-16" id="graph" > </div> -->
+
+          
+  <script>
+
+        new Morris.Bar({
+            element: 'graph',
+            data: [
+                    {% for item in maxs %}
+                    { period: '{{ item.date_create }}', max: 100 , rate: '{{item.average_effort}}' }{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+            ],
+            xkey: 'period',
+            ykeys: ['max', 'rate'],
+            labels: ['Limite esfuerzo %', 'Tu esfuerzo %'],
+            xLabels: "day"
+        });
+
+  </script>
+
+{% endblock %}
+
+
+
+
