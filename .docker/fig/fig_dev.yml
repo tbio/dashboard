@@ -8,7 +8,7 @@ dbdashboard:
     - "5432:5432"
   volumes:
     - .:/webapp/dashboard/
-    - /tmp/postgresql:/data
+    - /opt/databases/tbio/postgresql:/data
 dashboard:
   image: tbio/dashboard
   working_dir: /webapp/dashboard
