@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'contact',
     'patients',
     'specialist',
+    # Third Party
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,3 +101,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# Custom settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
