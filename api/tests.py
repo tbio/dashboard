@@ -26,4 +26,5 @@ class APITest(APITestCase):
             self.assertEqual(response.status_code, 200, response.content)
             print(response.content)
         except Exception as e:
-            raise e
+            print(e)
+            raise
