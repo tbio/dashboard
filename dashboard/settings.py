@@ -66,9 +66,9 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 
 DB_HOST = os.environ.get('DB_PORT_5432_TCP_ADDR', 'localhost')
 DB_PORT = os.environ.get('DB_PORT_5432_TCP_PORT', '')
-DB_USERNAME = os.environ.get('DB_ENV_USER', 'monoku')
-DB_PASSWORD = os.environ.get('DB_ENV_PASS', 'monokupassword')
-DB_NAME = os.environ.get('DB_ENV_DB', 'clarity')
+DB_USERNAME = os.environ.get('DB_ENV_USER', '')
+DB_PASSWORD = os.environ.get('DB_ENV_PASS', '')
+DB_NAME = os.environ.get('DB_ENV_DB', '')
 REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'localhost')
 
 DATABASES = {
