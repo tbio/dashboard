@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
 
-def index(request):
+def stream(request):
     context = {}
-    return render(request, 'dashboard/index.html', context)
+    return render(request, 'dashboard/stream.html', context)
