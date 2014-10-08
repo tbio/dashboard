@@ -3,5 +3,5 @@ from django.conf.urls import *
 
 urlpatterns = patterns(
     'www.views',
-    url(r'^', 'stream', name='stream'),
+    url(r'^/', 'stream', name='stream'),
 )
