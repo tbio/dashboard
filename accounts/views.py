@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 
-from authsys.models import User
-from authsys.forms import signin_form
+from accounts.models import User
+from accounts.forms import signin_form
 
 
 def signin(request):
@@ -25,10 +25,7 @@ def signin(request):
                     user_auth = authenticate(username=email, password=password)
                     if user_auth is not None:
                         login(request, user_auth)
-                        if request.POST.get('user_type', '') == '2':
-                            return redirect('/signup/step-2')
-                        else:
-                            return redirect('/search')
+                        return redirect('/')
                     else:
                         return redirect('/')
             else:
@@ -36,7 +33,7 @@ def signin(request):
         else:
             ctx = {}
             ctx['form'] = signin_form()
-            return render(request, 'web/signin.html', ctx)
+            return render(request, 'dashboard/login.html', ctx)
 
 
 def signout(request):
