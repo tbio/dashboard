@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def stream(request):
     context = {}
-    return render(request, 'dashboard/stream.html', context)
+    if request.user.is_authenticated():
+        return render(request, 'dashboard/stream.html', context)
+    else:
+        return redirect('/signin/')
