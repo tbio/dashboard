@@ -37,12 +37,12 @@
         </div>
 		<div class="tiles grey p-t-20 p-b-20 text-black">
 		
-      <form action="/dashboard/auth/" method="post" accept-charset="utf-8" id="frm_login" class="animated fadeIn" >		
+      <form action="{% url 'signin' %}" method="post" accept-charset="utf-8" id="frm_login" class="animated fadeIn" >		
         	 {% csrf_token %}
 
     <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
                       <div class="col-md-6 col-sm-6 ">
-                        <input name="username" id="username" type="text"  class="form-control" placeholder="Username">
+                        <input name="email" id="username" type="text"  class="form-control" placeholder="Username">
                       </div>
                       <div class="col-md-6 col-sm-6">
                         <input name="password" id="password" type="password"  class="form-control" placeholder="Password">

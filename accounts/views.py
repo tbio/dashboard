@@ -25,7 +25,7 @@ def signin(request):
                     user_auth = authenticate(username=email, password=password)
                     if user_auth is not None:
                         login(request, user_auth)
-                        return redirect('/')
+                        return redirect('/admin')
                     else:
                         return redirect('/')
             else:
