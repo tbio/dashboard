@@ -26,4 +26,5 @@ urlpatterns = patterns(
     url(r'^api/v1/', include(router.urls)),
     url(r'^', include('accounts.urls')),
     url(r'^', include('www.urls')),
+    url(r'^', include('measurements.urls')),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
