@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'contact',
     'patients',
     'specialist',
+    'www',
     # Third Party
     'rest_framework',
 )
