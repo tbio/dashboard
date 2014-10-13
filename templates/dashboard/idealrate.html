@@ -47,8 +47,8 @@
                   </div>
                   <div class="info-wrapper small-width inline">
                      <div class="info text-black ">
-                        <p>{{tip.tip}} </p>
-                        <p class="muted small-text"> Por xxx , {{tip.name}} </p>
+                        <p>{{temptip.title}} </p>
+                        <p class="muted small-text"> {{temptip.user.first_name}} {{temptip.user.last_name}} , {{temptip.description}} </p>
                      </div>
                      <div class="clearfix"></div>
                   </div>
@@ -74,7 +74,7 @@
       </div>
       <div class="grid-body" style="overflow: hidden; display: block;">
          <p>
-            En esta simple grafica puedes observar tu evolucion!, recuerda si constantemente tus lecturas estan muy por arriba de lo recomendado ten cuidado.
+            En esta simple grafica puedes observar tu evolución, recuerda si constantemente tus lecturas estan por arriba de lo recomendado consulta a tu médico.
          </p>
          <div id="graph" ></div>
       </div>
@@ -94,7 +94,7 @@
          <div class="live-tile slide ha m-b-20 carousel" data-speed="1750" data-delay="8000" data-mode="carousel">
             <div class="slide-front ha tiles green added-margin  slide active" style="-webkit-transition: 750ms ease; transition: 750ms ease; -webkit-transform: translate(0%, 0%) translateZ(0px);">
                <div class="p-t-15 p-l-15 p-r-15 p-b-15">
-                  <h4 class="text-black no-margin semi-bold">Informacion Rapida</h4>
+                  <h4 class="text-black no-margin semi-bold">Información Rapida</h4>
                   <h2 class="text-white no-margin p-t-15 bold">  <span data-animation-duration="900" data-value="60%" class="animate-number">0</span>  </h2>
                   <p class="text-white  p-b-5"></p>
                   <div class="progress transparent progress-small">
@@ -139,7 +139,7 @@
             element: 'graph',
             data: [
                     {% for item in bpms %}
-                    { period: '{{ item.date_create }}', ideal: '{{ information.ideal_heart_rate }}' , rate: '{{item.bpm}}' }{% if not forloop.last %},{% endif %}
+                    { period: '{{ item.date_created }}', ideal: '90' , rate: '{{item.bpm}}' }{% if not forloop.last %},{% endif %}
                     {% endfor %}
             ],
             xkey: 'period',

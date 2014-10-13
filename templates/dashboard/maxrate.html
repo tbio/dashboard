@@ -12,7 +12,7 @@
 <div class="col-md-6">
    <div class="grid simple transparent">
       <div class="tiles green p-t-15 p-b-15 p-l-25 ">
-         <h4><span class="bold">Que es?</span></h4>
+         <h4><span class="bold">¿Que es?</span></h4>
          <div class="tools">
             <a href="javascript:;" class="collapse"></a>
             <a href="javascript:;" class="remove"></a>
@@ -20,7 +20,7 @@
       </div>
       <div class="grid-body" style="overflow: hidden; display: block;">
          <p>
-            Tu corazon tambien tiene un limite, si constantemente tu esfuerzo es alto debes prestar atencion
+            Tu corazon tambien tiene un limite, si constantemente tu esfuerzo es alto debes consultar a tu médico.
          </p>
          <div class="blog-bar">
             <a href="#"><i class="icon-eye-open"></i></a> <a href="#"><i class="icon-comment"></i></a>
@@ -46,8 +46,8 @@
                   </div>
                   <div class="info-wrapper small-width inline">
                      <div class="info text-black ">
-                        <p>{{tip.tip}} </p>
-                        <p class="muted small-text"> Por {{tip.user.first_name}} {{tip.user.last_name}} </p> <br><br><br>
+                        <p>{{temptip.title}} </p>
+                        <p class="muted small-text"> Por {{temptip.user.first_name}} {{temptip.user.last_name}},  {{temptip.description}} </p> <br><br><br>
                      </div>
                      <div class="clearfix"></div>
                   </div>
@@ -138,7 +138,7 @@
             element: 'graph',
             data: [
                     {% for item in maxs %}
-                    { period: '{{ item.date_create }}', max: 100 , rate: '{{item.average_effort}}' }{% if not forloop.last %},{% endif %}
+                    { period: '{{ item.date_created }}', max: 100 , rate: '{{item.hr_max}}' }{% if not forloop.last %},{% endif %}
                     {% endfor %}
             ],
             xkey: 'period',
